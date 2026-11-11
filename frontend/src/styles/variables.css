@@ -1,0 +1,24 @@
+/*
+  Global layout spacer — accounts for the fixed navbar.
+  All pages that are NOT the hero full-bleed sections
+  should use padding-top: var(--nav-height).
+*/
+:root {
+  --nav-height: 68px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 60px;
+  }
+}
+
+/* Applied to every page that needs top padding */
+.page-top-pad {
+  padding-top: var(--nav-height);
+}
+
+/* Page banner already sits under the navbar */
+.page-banner {
+  margin-top: var(--nav-height);
+}

@@ -1,0 +1,13 @@
+{
+  "name": "viaroad",
+  "version": "1.0.0",
+  "description": "VIAROAD - Your Journey. Our Responsibility.",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start:server": "cd server && npm start",
+    "install:all": "cd frontend && npm install && cd ../server && npm install"
+  }
+}

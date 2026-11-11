@@ -1,0 +1,158 @@
+/* Services Page */
+
+/* ── Service detail alternating layout ── */
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Alternate: info on left, text on right */
+.service-detail-alt .service-detail-grid {
+  grid-template-columns: 420px 1fr;
+}
+.service-detail-alt .service-detail-text  { order: 2; }
+.service-detail-alt .service-detail-info  { order: 1; }
+
+.service-detail-alt { background: var(--off-white); }
+
+.service-detail-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0;
+}
+
+.service-detail-icon { font-size: 2.4rem; }
+
+.service-detail-desc {
+  color: var(--text-medium);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.service-detail-features h4 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.service-detail-features ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.service-detail-features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+/* ── Booking info card ── */
+.booking-info-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 88px;
+}
+
+.booking-info-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.booking-info-card > p {
+  font-size: 0.875rem;
+  color: var(--text-medium);
+  margin-bottom: 16px;
+}
+
+.booking-fields-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.booking-fields-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.booking-fields-list svg { color: var(--blue-accent); flex-shrink: 0; }
+
+.deposit-notice {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 0.85rem;
+  color: #92400e;
+}
+
+.deposit-notice strong { display: block; margin-bottom: 6px; }
+.deposit-notice p { line-height: 1.6; }
+
+/* ── Fleet grid ── */
+.services-fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ── Pricing note ── */
+.pricing-note-box {
+  background: var(--navy);
+  color: rgba(255,255,255,0.85);
+  border-radius: 20px;
+  padding: 36px 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pricing-note-box h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.pricing-note-box p {
+  line-height: 1.75;
+  font-size: 0.9rem;
+}
+
+.pricing-note-box a { color: #c9a84c; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .service-detail-grid,
+  .service-detail-alt .service-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-detail-alt .service-detail-text { order: 1; }
+  .service-detail-alt .service-detail-info { order: 2; }
+  .booking-info-card { position: static; }
+  .services-fleet-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .service-detail-features ul { grid-template-columns: 1fr; }
+  .services-fleet-grid { grid-template-columns: 1fr; }
+  .pricing-note-box { padding: 24px 20px; }
+}

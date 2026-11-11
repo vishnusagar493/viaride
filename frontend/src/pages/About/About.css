@@ -1,0 +1,185 @@
+/* About Page */
+
+/* ── Intro: 2-col split ── */
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 56px;
+  align-items: start;
+}
+
+.about-intro-text p {
+  color: var(--text-medium);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.about-owner-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--off-white);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-top: 28px;
+  border-left: 4px solid var(--gold);
+}
+
+.owner-avatar {
+  width: 48px; height: 48px;
+  background: var(--navy);
+  color: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; flex-shrink: 0;
+}
+
+.owner-name  { font-weight: 700; color: var(--navy); font-size: 0.95rem; }
+.owner-role  { font-size: 0.8rem; color: var(--text-light); margin: 2px 0; }
+.owner-phone { font-size: 0.85rem; color: var(--blue-accent); font-weight: 600; text-decoration: none; }
+
+/* ── Visual box ── */
+.about-visual-box {
+  background: linear-gradient(135deg, var(--navy-dark), var(--navy-light));
+  border-radius: 24px;
+  padding: 40px 32px;
+  color: #fff;
+  position: sticky;
+  top: 88px;
+}
+
+.about-visual-main {
+  text-align: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 24px;
+}
+
+.about-big-icon { font-size: 4rem; display: block; margin-bottom: 12px; }
+.about-visual-main h3 { font-size: 1.6rem; font-weight: 800; letter-spacing: 0.04em; color: #c9a84c; }
+.slogan-text { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-style: italic; margin-top: 6px; }
+
+.about-visual-stats { display: flex; justify-content: space-around; }
+
+.about-stat {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.about-stat strong { font-size: 1.5rem; font-weight: 800; color: #c9a84c; }
+.about-stat span   { font-size: 0.75rem; color: rgba(255,255,255,0.6); text-align: center; }
+
+/* ── Mission/Vision ── */
+.mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.mv-card {
+  border-radius: 20px;
+  padding: 36px 32px;
+}
+
+.mv-mission { background: var(--navy); color: rgba(255,255,255,0.85); }
+.mv-vision  { background: #fff; color: var(--text-medium); border: 2px solid var(--mid-grey); }
+
+.mv-icon { font-size: 2.5rem; margin-bottom: 16px; }
+
+.mv-card h3 {
+  font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 14px;
+}
+.mv-mission h3 { color: #c9a84c; }
+.mv-vision  h3 { color: var(--navy); }
+
+.mv-card p { line-height: 1.8; font-size: 0.9rem; }
+
+/* ── Values ── */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.value-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 22px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: all 0.3s;
+  text-align: center;
+}
+.value-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+.value-icon { font-size: 2.2rem; display: block; margin-bottom: 14px; }
+.value-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.value-card p  { font-size: 0.85rem; color: var(--text-medium); line-height: 1.7; }
+
+/* ── Commitment ── */
+.about-commitment {
+  background: linear-gradient(135deg, var(--navy-dark), var(--navy-light));
+  padding: 80px 0;
+  color: #fff;
+}
+
+.commitment-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 64px;
+  align-items: center;
+}
+
+.commitment-text h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.commitment-text > p {
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.commitment-list { display: flex; flex-direction: column; gap: 10px; }
+
+.commitment-list li {
+  display: flex; align-items: center; gap: 10px;
+  color: rgba(255,255,255,0.85); font-size: 0.9rem;
+}
+.commitment-list svg { color: #c9a84c; flex-shrink: 0; }
+
+.commitment-circle {
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 3px solid rgba(201,168,76,0.5);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 6px;
+  flex-shrink: 0;
+}
+
+.commitment-num {
+  font-size: 2.2rem; font-weight: 800;
+  color: #c9a84c; line-height: 1;
+}
+.commitment-label {
+  font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .about-intro-grid { grid-template-columns: 1fr; }
+  .about-visual-box { position: static; }
+  .mv-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .commitment-inner { grid-template-columns: 1fr; }
+  .commitment-badge { display: flex; justify-content: center; }
+}
+
+@media (max-width: 640px) {
+  .values-grid { grid-template-columns: 1fr; }
+  .about-owner-card { flex-direction: column; text-align: center; }
+}

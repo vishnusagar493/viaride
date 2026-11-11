@@ -1,0 +1,50 @@
+/* Complaints Page */
+.complaints-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+}
+
+.complaint-form-card {
+  background: #fff; border-radius: 16px; padding: 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin-bottom: 28px; border-left: 4px solid var(--blue-accent);
+}
+.complaint-form-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.complaints-list { display: flex; flex-direction: column; gap: 16px; }
+
+.complaint-item {
+  background: #fff; border-radius: 14px; padding: 22px 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  border: 1px solid var(--light-grey);
+}
+
+.complaint-item-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px; margin-bottom: 10px;
+}
+
+.complaint-num { font-weight: 800; color: var(--navy); margin-right: 10px; }
+.complaint-category { font-size: 0.8rem; background: var(--light-grey); color: var(--text-medium); padding: 3px 10px; border-radius: 20px; }
+.complaint-booking  { font-size: 0.8rem; color: var(--blue-accent); margin-bottom: 8px; }
+.complaint-desc     { color: var(--text-medium); font-size: 0.9rem; line-height: 1.7; margin-bottom: 10px; }
+.complaint-date     { font-size: 0.75rem; color: var(--text-light); margin-top: 8px; }
+
+.complaint-response {
+  background: #f0fdf4; border-radius: 8px; padding: 12px 14px;
+  border-left: 3px solid #22c55e; margin: 10px 0;
+}
+.complaint-response strong { font-size: 0.8rem; color: #065f46; display: block; margin-bottom: 4px; }
+.complaint-response p { font-size: 0.875rem; color: #064e3b; line-height: 1.6; }
+
+.complaints-empty {
+  text-align: center; padding: 64px 0; color: var(--text-light);
+}
+.complaints-empty span { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+@media (max-width: 640px) {
+  .form-row-2 { grid-template-columns: 1fr; }
+  .complaints-header { flex-direction: column; }
+}
