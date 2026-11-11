@@ -1,63 +1,76 @@
+
 const multer = require('multer');
 const path = require('path');
+const os = require('os');
+const fs = require('fs');
 const crypto = require('crypto');
+
 const { errorResponse } = require('../utils/apiResponse');
 
-const allowedImageTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
-const allowedDocTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
-const MAX_SIZE = parseInt(process.env.MAX_FILE_SIZE) || 5 * 1024 * 1024; // 5MB
+const allowedImageTypes = [
+  'image/jpeg',
+  'image/png',
+  'image/jpg',
+  'image/webp'
+];
 
+const allowedDocTypes = [
+  'image/jpeg',
+  'image/png',
+  'image/jpg',
+  'application/pdf'
+];
+
+const MAX_SIZE =
+  parseInt(process.env.MAX_FILE_SIZE, 10) || 5 * 1024 * 1024;
+
+// Vercel writable temporary storage
+const UPLOAD_ROOT = path.join(os.tmpdir(), 'uploads');
+
+// Generate secure filename
 const generateSecureFilename = (originalname) => {
   const ext = path.extname(originalname).toLowerCase();
   const randomName = crypto.randomBytes(16).toString('hex');
+
   return `${Date.now()}-${randomName}${ext}`;
 };
 
-// Vehicle images storage
-const vehicleStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads/vehicles'));
-  },
-  filename: (req, file, cb) => {
-    cb(null, generateSecureFilename(file.originalname));
-  },
-});
+// Create upload directories in /tmp
+const createUploadDirectory = (folder) => {
+  const uploadPath = path.join(UPLOAD_ROOT, folder);
 
-// Document storage (private, only admin access)
-const documentStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads/documents'));
-  },
-  filename: (req, file, cb) => {
-    cb(null, generateSecureFilename(file.originalname));
-  },
-});
+  fs.mkdirSync(uploadPath, { recursive: true });
 
-// QR code storage
-const qrStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads/qr'));
-  },
-  filename: (req, file, cb) => {
-    cb(null, generateSecureFilename(file.originalname));
-  },
-});
+  return uploadPath;
+};
 
-// Payment screenshot storage
-const paymentStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads/payments'));
-  },
-  filename: (req, file, cb) => {
-    cb(null, generateSecureFilename(file.originalname));
-  },
-});
+// Create separate storage configurations
+const createStorage = (folder) => {
+  return multer.diskStorage({
+    destination: (req, file, cb) => {
+      try {
+        const uploadPath = createUploadDirectory(folder);
+        cb(null, uploadPath);
+      } catch (error) {
+        cb(error);
+      }
+    },
 
+    filename: (req, file, cb) => {
+      cb(null, generateSecureFilename(file.originalname));
+    }
+  });
+};
+
+// File filters
 const imageFilter = (req, file, cb) => {
   if (allowedImageTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error('Only JPEG, PNG, JPG and WebP images are allowed.'), false);
+    cb(
+      new Error('Only JPEG, PNG, JPG and WebP images are allowed.'),
+      false
+    );
   }
 };
 
@@ -65,44 +78,47 @@ const documentFilter = (req, file, cb) => {
   if (allowedDocTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error('Only JPEG, PNG, JPG and PDF files are allowed for documents.'), false);
+    cb(
+      new Error(
+        'Only JPEG, PNG, JPG and PDF files are allowed for documents.'
+      ),
+      false
+    );
   }
 };
 
+// Vehicle images upload
 const uploadVehicleImage = multer({
-  storage: vehicleStorage,
+  storage: createStorage('vehicles'),
   limits: { fileSize: MAX_SIZE },
-  fileFilter: imageFilter,
+  fileFilter: imageFilter
 });
 
+// Documents upload
 const uploadDocuments = multer({
-  storage: documentStorage,
+  storage: createStorage('documents'),
   limits: { fileSize: MAX_SIZE },
-  fileFilter: documentFilter,
+  fileFilter: documentFilter
 });
 
+// QR code upload
 const uploadQR = multer({
-  storage: qrStorage,
+  storage: createStorage('qr'),
   limits: { fileSize: MAX_SIZE },
-  fileFilter: imageFilter,
+  fileFilter: imageFilter
 });
 
+// Payment screenshot upload
 const uploadPaymentScreenshot = multer({
-  storage: paymentStorage,
+  storage: createStorage('payments'),
   limits: { fileSize: MAX_SIZE },
-  fileFilter: imageFilter,
+  fileFilter: imageFilter
 });
 
-// Ensure payment uploads directory exists
-const fs = require('fs');
-const paymentDir = path.join(__dirname, '../uploads/payments');
-if (!fs.existsSync(paymentDir)) {
-  fs.mkdirSync(paymentDir, { recursive: true });
-}
-
+// Export middleware
 module.exports = {
   uploadVehicleImage,
   uploadDocuments,
   uploadQR,
-  uploadPaymentScreenshot,
+  uploadPaymentScreenshot
 };
